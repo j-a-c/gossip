@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * @author Joshua A. Campbell
  * 
@@ -7,19 +9,25 @@ public class Driver
 {
 
     // Number of states to simulate
+    // TODO make a parameter
     private static int CYCLES = 10;
 
     public static void main(String[] args)
     {
+        // Random generator to be used for the simulation
+        // TODO make a parameter
+        Random rand = new Random();
+        rand.setSeed(100L);
+
         System.out.println("Creating system.");
 
-        NodeSystem system = new NodeSystem();
+        NodeSystem system = new NodeSystem(rand);
 
         system.initialize();
 
         // Set the gossip protocol
         // TODO make a parameter
-        system.setGossipProtocol(new PushPullProtocol());
+        system.setGossipProtocol(new PushPullProtocol(rand));
 
         // Infect a node
         // TODO make a parameter

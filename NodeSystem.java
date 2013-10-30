@@ -27,12 +27,9 @@ public class NodeSystem
     // Gossip protocol to be used by the Nodes
     private GossipProtocol protocol;
 
-    public NodeSystem()
+    public NodeSystem(Random rand)
     {
-        // Initialize random number generator
-        rand = new Random();
-        rand.setSeed(100L);
-
+        this.rand = rand;
         nodes = new ArrayList<Node>();
     }
 
@@ -93,7 +90,7 @@ public class NodeSystem
     // TODO
     public void nextState()
     {
-    
+        protocol.gossip(nodes); 
     }
 
     // TODO
