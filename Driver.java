@@ -15,24 +15,27 @@ public class Driver
     public static void main(String[] args)
     {
         // Random generator to be used for the simulation
-        // TODO make a parameter
-        Random rand = new Random();
-        rand.setSeed(100L);
+        // TODO make seed a parameter
+        Random seedRand = new Random();
+        seedRand.setSeed(100L);
 
         System.out.println("Initializing system.");
 
-        NodeSystem system = new NodeSystem(rand);
+        Random systemRand = new Random(seedRand.nextLong());
+        NodeSystem system = new NodeSystem(systemRand);
 
         system.initialize();
         System.out.println("Done initializing system.");
 
         // TODO move into NodeSystem constructor?
         // Set the gossip protocol
-        // TODO make a parameter
-        system.setGossipProtocol(new PushPullProtocol(rand));
+        // TODO make protocol a parameter
+        Random protocolRand = new Random(seedRand.nextLong());
+        GossipProtocol protocol = new PushPullProtocol(protocolRand);
+        system.setGossipProtocol(protocol);
 
         // Infect a node
-        // TODO make a parameter
+        // TODO make strategy a parameter
         system.infect(new EmptyStrategy());
         
         System.out.println("Starting simulation.");
