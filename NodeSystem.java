@@ -49,7 +49,7 @@ public class NodeSystem
         // Create the nodes
         for(int i = 0; i < numNodes; i++)
         {
-            Node node = new Node(new EmptyStrategy(), System.currentTimeMillis());
+            Node node = new Node(new EmptyStrategy(), SystemTime.getTime());
             
             // TODO
             // Determine this node's peer table size
@@ -65,12 +65,14 @@ public class NodeSystem
                 // Find a random node not in this node's peer table
                 int nextNeighbor = rand.nextInt(nodes.size());
 
+                // Peer should not know the neighbor and the neighbor should
+                // be this peer
                 while(node.knowsPeer(nextNeighbor) || nextNeighbor == node.getID())
                 {
                     nextNeighbor = rand.nextInt(nodes.size());
                 }
 
-                node.setPeer(index, nextNeighbor);
+                node.setPeer(index, nodes.get(nextNeighbor));
             }
         }
     }
@@ -84,13 +86,13 @@ public class NodeSystem
         int infectedPeer = rand.nextInt(nodes.size()); 
         System.out.println("Infecting peer: " + infectedPeer);
 
-        nodes.get(infectedPeer).setStrategy(strategy, System.currentTimeMillis());
+        nodes.get(infectedPeer).setStrategy(strategy, SystemTime.getTime());
     }
 
     // TODO
     public void nextState()
     {
-        protocol.gossip(nodes); 
+        protocol.doProtocol(nodes); 
     }
 
     // TODO

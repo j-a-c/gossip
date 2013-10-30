@@ -7,4 +7,6 @@
 public interface StructureStrategy
 {
 
+    public void doStrategy(Node first, Node second);
+
 }

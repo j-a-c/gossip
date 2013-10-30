@@ -15,7 +15,7 @@ public class Node
     // This node's identifier
     private int myId;
     // This node's known peers
-    private int[] peerTable;
+    private Node[] peerTable;
 
     // The current structure strategy this node is using
     private StructureStrategy strategy;
@@ -34,10 +34,26 @@ public class Node
      */
     public boolean knowsPeer(int peerID)
     {
-        for (int pid :  peerTable)
-            if (pid == peerID)
+        for (Node peer :  peerTable)
+            if (peer != null && peer.getID() == peerID)
                 return true;
         return false;
+    }
+
+    /**
+     * Causes the node to gossip with the peer at the current index in the
+     * peerTable.
+     */
+    public void gossip(int index)
+    {
+        Node partner = peerTable[index];
+
+        // The first step of gossiping is sharing the most recent protocol
+        if (this.updateTime >= partner.getUpdateTime())
+            partner.setStrategy(this.strategy, SystemTime.getTime());
+        else this.setStrategy(partner.getStrategy(), SystemTime.getTime());
+        // Then do the most recent protocol
+        strategy.doStrategy(this, partner);
     }
 
     @Override
@@ -47,10 +63,10 @@ public class Node
 
         builder.append("Node: ");
         builder.append(myId);
-        for (int pid : peerTable)
+        for (Node peer: peerTable)
         {
             builder.append(" ");
-            builder.append(pid);
+            builder.append(peer.getID());
         }
 
         return builder.toString();
@@ -70,19 +86,28 @@ public class Node
         return peerTable.length;
     }
 
-    public void setPeerTableSize(int size)
+    public long getUpdateTime()
     {
-        peerTable = new int[size]; 
+        return this.updateTime;
     }
 
-    public void setPeer(int index, int peerID)
+    public void setPeerTableSize(int size)
+    {
+        peerTable = new Node[size]; 
+    }
+
+    public void setPeer(int index, Node peer)
     {
         if (index >= peerTable.length || index < 0)
             throw new RuntimeException("Invalid peer index!");
 
-        peerTable[index] = peerID;
+        peerTable[index] = peer;
     }
 
+    public StructureStrategy getStrategy()
+    {
+        return this.strategy;
+    }
 
     public void setStrategy(StructureStrategy strategy, long updateTime)
     {

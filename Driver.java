@@ -10,7 +10,7 @@ public class Driver
 
     // Number of states to simulate
     // TODO make a parameter
-    private static int CYCLES = 10;
+    private static int CYCLES = 1;
 
     public static void main(String[] args)
     {
@@ -36,7 +36,7 @@ public class Driver
 
         // Infect a node
         // TODO make strategy a parameter
-        system.infect(new EmptyStrategy());
+        system.infect(new CloseStrategy());
         
         System.out.println("Starting simulation.");
         for(int i = 0; i < CYCLES; i++)

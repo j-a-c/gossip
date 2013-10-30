@@ -17,13 +17,13 @@ TODO:
     - Output current state
     - Dynamic Node peer table size
     - Gossip protocols
-        - push/pull
     - structure strategies
         - closest
         - single hub
         - multi hub
         - equally connected
     - Python graph display
+    - Protocol singleton?
 
 Driver.java
     - driver for the Tests
@@ -32,10 +32,16 @@ Node.java
     - a single node in the network
 NodeSystem
     - the complete system of nodes
+SystemTime
+    - returns the current time of the system
+    - this is used because the System.currentTimeMillis() does not provide
+      enough granularity
 
 (Each node has a StructureStrategy)
 StructureStrategy
     - interface for strategies the nodes can use to structure themselves.
+CloseStrategy
+    - a strategy that attempts to connect nodes to their closest neighbors
 EmptyStrategy
     - a strategy that does nothing
 
