@@ -19,12 +19,14 @@ public class Driver
         Random rand = new Random();
         rand.setSeed(100L);
 
-        System.out.println("Creating system.");
+        System.out.println("Initializing system.");
 
         NodeSystem system = new NodeSystem(rand);
 
         system.initialize();
+        System.out.println("Done initializing system.");
 
+        // TODO move into NodeSystem constructor?
         // Set the gossip protocol
         // TODO make a parameter
         system.setGossipProtocol(new PushPullProtocol(rand));
@@ -33,6 +35,7 @@ public class Driver
         // TODO make a parameter
         system.infect(new EmptyStrategy());
         
+        System.out.println("Starting simulation.");
         for(int i = 0; i < CYCLES; i++)
         {
             system.nextState();
