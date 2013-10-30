@@ -6,6 +6,9 @@
 public class Driver
 {
 
+    // Number of states to simulate
+    private static int CYCLES = 10;
+
     public static void main(String[] args)
     {
         System.out.println("Creating system.");
@@ -15,7 +18,12 @@ public class Driver
         system.initialize();
 
         // TODO
-        system.infect();
+        system.infect(new EmptyStrategy());
+        
+        for(int i = 0; i < CYCLES; i++)
+        {
+            system.nextState();
+        }
         
     }
 }

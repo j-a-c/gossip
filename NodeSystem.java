@@ -82,6 +82,7 @@ public class NodeSystem
     public void infect(StructureStrategy strategy)
     {
         int infectedPeer = rand.nextInt(nodes.size()); 
+        System.out.println("Infecting peer: " + infectedPeer);
 
         nodes.get(infectedPeer).setStrategy(strategy, System.currentTimeMillis());
     }

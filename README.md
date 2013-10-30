@@ -14,6 +14,7 @@ is also important to monitor the long-term effectiveness of different
 strategies.
 
 TODO:
+    - Output current state
     - Dynamic Node peer table size
     - Gossip protocols
     - structure strategies
