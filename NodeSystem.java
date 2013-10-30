@@ -49,7 +49,7 @@ public class NodeSystem
         // Create the nodes
         for(int i = 0; i < numNodes; i++)
         {
-            Node node = new Node();
+            Node node = new Node(new EmptyStrategy(), System.currentTimeMillis());
             
             // TODO
             // Determine this node's peer table size

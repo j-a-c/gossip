@@ -22,8 +22,10 @@ public class Node
     // The last time this node was updated with a strategy
     private long updateTime;
 
-    public Node()
+    public Node(StructureStrategy strategy, long enterTime)
     {
+        this.strategy = strategy;
+        updateTime = enterTime;
         myId = id++;
     }
 

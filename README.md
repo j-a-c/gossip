@@ -33,11 +33,13 @@ Node.java
 NodeSystem
     - the complete system of nodes
 
+(Each node has a StructureStrategy)
 StructureStrategy
     - interface for strategies the nodes can use to structure themselves.
 EmptyStrategy
     - a strategy that does nothing
 
+(One GossipProtocol is used by the NodeSystem)
 GossipProtocol
     - interface for gossip protocols
 PushPullProtocol
