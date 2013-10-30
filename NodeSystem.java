@@ -24,6 +24,9 @@ public class NodeSystem
     // All nodes in the System
     private ArrayList<Node> nodes; 
 
+    // Gossip protocol to be used by the Nodes
+    private GossipProtocol protocol;
+
     public NodeSystem()
     {
         // Initialize random number generator
@@ -97,5 +100,15 @@ public class NodeSystem
     public void getCurrentStateSnapshot()
     {
     
+    }
+
+
+    /*
+     * Getters & Setters
+     */
+
+    public void setGossipProtocol(GossipProtocol newProtocol)
+    {
+        this.protocol = newProtocol;
     }
 }

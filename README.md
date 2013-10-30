@@ -17,6 +17,7 @@ TODO:
     - Output current state
     - Dynamic Node peer table size
     - Gossip protocols
+        - push/pull
     - structure strategies
         - closest
         - single hub
@@ -26,9 +27,18 @@ TODO:
 
 Driver.java
     - driver for the Tests
+
 Node.java
     - a single node in the network
 NodeSystem
     - the complete system of nodes
+
 StructureStrategy
     - interface for strategies the nodes can use to structure themselves.
+EmptyStrategy
+    - a strategy that does nothing
+
+GossipProtocol
+    - interface for gossip protocols
+PushPullProtocol
+    - implementation of the push/pull protocol

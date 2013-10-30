@@ -17,7 +17,12 @@ public class Driver
 
         system.initialize();
 
-        // TODO
+        // Set the gossip protocol
+        // TODO make a parameter
+        system.setGossipProtocol(new PushPullProtocol());
+
+        // Infect a node
+        // TODO make a parameter
         system.infect(new EmptyStrategy());
         
         for(int i = 0; i < CYCLES; i++)
