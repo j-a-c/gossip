@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 /**
@@ -37,11 +40,31 @@ public class Driver
         // Infect a node
         // TODO make strategy a parameter
         system.infect(new CloseStrategy());
-        
-        System.out.println("Starting simulation.");
-        for(int i = 0; i < CYCLES; i++)
+
+        try
         {
-            system.nextState();
+            // TODO parameterize output file
+            File outputFile = new File("output.txt");
+
+            PrintWriter output = new PrintWriter(outputFile);
+        
+            System.out.println("Starting simulation.");
+            for(int i = 0; i < CYCLES; i++)
+            {
+                system.nextState();
+
+                String state = system.getCurrentState();
+
+                // Write state followed by a separator
+                output.write(state);
+                output.write('.');
+                output.flush();
+            }
+            output.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.err.println(e);
         }
         
     }

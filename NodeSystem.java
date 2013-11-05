@@ -1,3 +1,4 @@
+import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -79,7 +80,7 @@ public class NodeSystem
 
 
     /**
-     * Infect a random node with this strategy
+     * Infect a random node with this strategy.
      */
     public void infect(StructureStrategy strategy)
     {
@@ -89,16 +90,24 @@ public class NodeSystem
         nodes.get(infectedPeer).setStrategy(strategy, SystemTime.getTime());
     }
 
-    // TODO
+    /**
+     * Enacts the protocol on the nodes.
+     */
     public void nextState()
     {
         protocol.doProtocol(nodes); 
     }
 
-    // TODO
-    public void getCurrentStateSnapshot()
+    /**
+     * Returns a string representing the current state of the system.
+     */
+    public String getCurrentState()
     {
-    
+        StringBuilder accumulator = new StringBuilder();
+
+        // TODO
+        
+        return accumulator.toString();
     }
 
 

@@ -18,10 +18,12 @@ TODO:
     - Dynamic Node peer table size
     - Gossip protocols
     - structure strategies
-        - closest
         - single hub
         - multi hub
         - equally connected
+	- tree
+	- single coordinator election
+	- even token distribution (multi election)
     - Python graph display
     - Protocol singleton?
 
