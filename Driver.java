@@ -10,7 +10,7 @@ public class Driver
 
     // Number of states to simulate
     // TODO make a parameter
-    private static int CYCLES = 1;
+    private static int CYCLES = 3;
 
     public static void main(String[] args)
     {

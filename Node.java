@@ -52,6 +52,7 @@ public class Node
         if (this.updateTime >= partner.getUpdateTime())
             partner.setStrategy(this.strategy, SystemTime.getTime());
         else this.setStrategy(partner.getStrategy(), SystemTime.getTime());
+
         // Then do the most recent protocol
         strategy.doStrategy(this, partner);
     }
@@ -79,6 +80,11 @@ public class Node
     public int getID()
     {
         return this.myId;
+    }
+
+    public Node getPeerAt(int index)
+    {
+        return peerTable[index]; 
     }
 
     public int getPeerTableSize()
