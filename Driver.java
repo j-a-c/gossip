@@ -13,7 +13,7 @@ public class Driver
 
     // Number of states to simulate
     // TODO make a parameter
-    private static int CYCLES = 3;
+    private static int CYCLES = 50;
 
     public static void main(String[] args)
     {
@@ -47,6 +47,11 @@ public class Driver
             File outputFile = new File("output.txt");
 
             PrintWriter output = new PrintWriter(outputFile);
+
+            // Write initial state
+            output.print(system.getCurrentState());
+            output.println('.');
+            output.flush();
         
             System.out.println("Starting simulation.");
             for(int i = 0; i < CYCLES; i++)
@@ -56,10 +61,12 @@ public class Driver
                 String state = system.getCurrentState();
 
                 // Write state followed by a separator
-                output.write(state);
-                output.write('.');
+                output.print(state);
+                output.println('.');
                 output.flush();
             }
+
+            System.out.println("Ending simulation.");
             output.close();
         }
         catch (FileNotFoundException e)

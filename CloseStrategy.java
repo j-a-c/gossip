@@ -27,9 +27,11 @@ public class CloseStrategy implements StructureStrategy
             }
 
             // New closest node to second peer?
-            // Make sure node isn't itself
+            // Make sure node isn't itself and that node doesn't already know
+            // the peer we are checking
             int tempDist = Math.abs(second.getID() - current.getID());
-            if (tempDist > 0 && tempDist < secondClosestDistance)
+            boolean knowsPeer = second.knowsPeer(current.getID());
+            if (!knowsPeer && tempDist > 0 && tempDist < secondClosestDistance)
             {
                 secondClosestDistance = tempDist;
                 secondClosestIndex = i;
@@ -54,9 +56,11 @@ public class CloseStrategy implements StructureStrategy
             }
 
             // New closest node to first peer?
-            // Make sure node isn't itself
+            // Make sure node isn't itself and that the node doesn't already
+            // know the peer we are checking
             int tempDist = Math.abs(first.getID() - current.getID());
-            if (tempDist > 0 && tempDist < firstClosestDistance)
+            boolean knowsPeer = first.knowsPeer(current.getID());
+            if (!knowsPeer && tempDist > 0 && tempDist < firstClosestDistance)
             {
                 firstClosestDistance = tempDist;
                 firstClosestIndex = i;

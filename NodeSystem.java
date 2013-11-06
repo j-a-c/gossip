@@ -19,6 +19,9 @@ public class NodeSystem
     // The maximum size of a node's routing table
     private int ROUTING_TABLE_MAX_SIZE = 50;
 
+    private static String SPACE = " ";
+    private static String NEWLINE = "\n";
+
     // Random number generator for this system
     public Random rand;
 
@@ -105,7 +108,20 @@ public class NodeSystem
     {
         StringBuilder accumulator = new StringBuilder();
 
-        // TODO
+        for (Node node : nodes)
+        {
+            accumulator.append(node.getID());
+            accumulator.append(SPACE);
+
+            int numPeers = node.getPeerTableSize();
+
+            for(int i = 0; i < numPeers; i++)
+            {
+                accumulator.append(node.getPeerAt(i).getID());
+                accumulator.append(SPACE);
+            }
+            accumulator.append(NEWLINE);
+        }
         
         return accumulator.toString();
     }

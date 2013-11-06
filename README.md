@@ -27,6 +27,10 @@ TODO:
     - Python graph display
     - Protocol singleton?
 
+graph.py
+    - After graphs output has been saved, graph.py can be used to generate an
+      animated GIF of the graph's changing topology
+
 Driver.java
     - driver for the Tests
 
